@@ -3,12 +3,12 @@ Custom integation based on humidifer and sensor platforms for EVA II PRO WiFi Sm
 For more details please refer to the documentation at
 https://github.com/barban-dev/midea_inventor_dehumidifier
 """
-VERSION = '1.0.0'
+VERSION = '1.0.3'
 
 import logging
 from custom_components.midea_dehumidifier import DOMAIN, MIDEA_TARGET_DEVICE
 from homeassistant.helpers.entity import Entity
-from homeassistant.const import (DEVICE_CLASS_HUMIDITY)
+from homeassistant.components.sensor import SensorDeviceClass
 
 from custom_components.midea_dehumidifier.humidifier import ATTR_CURRRENT_HUMIDITY
 
@@ -45,11 +45,9 @@ class MideaDehumidifierSensor(Entity):
         self._hass = hass
         self._name = 'midea_dehumidifier_' + targetDevice['id'] + '_humidity'
         self._unique_id = 'midea_dehumidifier_' + targetDevice['id'] + '_humidity'
-        #self._type = type
-        self._device_class = DEVICE_CLASS_HUMIDITY
+        self._device_class = SensorDeviceClass.HUMIDITY
         self._unit_of_measurement = '%'
         self._icon = 'mdi:water-percent'
-        #self._battery = battery
 
         self._humidifier_entity_id = 'humidifier.midea_dehumidifier_' + targetDevice['id']
 
