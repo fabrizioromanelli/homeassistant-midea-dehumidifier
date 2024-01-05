@@ -1,4 +1,4 @@
-[<img src = "https://github.com/barban-dev/homeassistant-midea-dehumidifier/blob/master/images/ha-logo.png?raw=true" height = "100">](https://www.home-assistant.io/) 
+[<img src = "https://github.com/fabrizioromanelli/homeassistant-midea-dehumidifier/blob/master/images/ha-logo.png?raw=true" height = "100">](https://www.home-assistant.io/) 
 # Home Assistant Custom Integration for Midea dehumidifiers (Inventor EVA II PRO WiFi / Comfee MDDP-50DEN7 appliances).
 
 [![ViewCount](https://views.whatilearened.today/views/github/barban-dev/midea_inventor_dehumidifier.svg)](http://github.com/barban-dev/homeassistant-midea-dehumidifier)
@@ -13,7 +13,7 @@ Licence: GPLv3
 This repo contains a Home Assistant custom integration for EVA II PRO WiFi Smart Dehumidifier appliance by Midea/Inventor.
 It has been reported that the custom integration can work also with **Comfee MDDP-50DEN7** appliance.
 
-This custom component is based on python library [***midea_inventor_lib***.](https://github.com/barban-dev/midea_inventor_dehumidifier): see library's readme and prerequisites to be able to control your device on Home Assistant.
+This custom component is based on python library [***midea_inventor_lib***.](https://github.com/fabrizioromanelli/midea_inventor_dehumidifier): see library's readme and prerequisites to be able to control your device on Home Assistant.
 
 Info about the dehumidifier appliance can be found [here.](https://www.inventorappliances.com/dehumidifiers/eva-ii-pro-wi-fi-20l)
 
@@ -209,14 +209,3 @@ logger:
 ```
 
 Copy ``/midea_inventor_lib`` folder on ``\deps\lib\python3.6\site-packages\`` of your HA's configuration shared folder.
-
-
-
-
-Donations
----------
-If this project helps you to reduce time to develop your code, you can make me a donation.
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5E7ULVFGCGKU2&source=url)
-[![coffe](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/barban)
-
