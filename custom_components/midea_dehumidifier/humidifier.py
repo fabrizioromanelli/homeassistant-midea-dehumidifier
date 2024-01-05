@@ -3,13 +3,13 @@ Custom integation based on humidifer and sensor platforms for EVA II PRO WiFi Sm
 For more details please refer to the documentation at
 https://github.com/barban-dev/midea_inventor_dehumidifier
 """
-VERSION = '1.0.2'
+VERSION = '1.0.4'
 
 import logging
 from typing import List, Optional
 from custom_components.midea_dehumidifier import DOMAIN, MIDEA_API_CLIENT, MIDEA_TARGET_DEVICE
 from homeassistant.const import ATTR_MODE
-from homeassistant.components.humidifier import HumidifierEntity
+from homeassistant.components.humidifier import HumidifierEntity, HumidifierDeviceClass, HumidifierEntityFeature
 from homeassistant.components.humidifier.const import (
     ATTR_AVAILABLE_MODES,
     ATTR_HUMIDITY,
@@ -17,16 +17,12 @@ from homeassistant.components.humidifier.const import (
     ATTR_MIN_HUMIDITY,
     DEFAULT_MAX_HUMIDITY,
     DEFAULT_MIN_HUMIDITY,
-    DEVICE_CLASS_DEHUMIDIFIER,
 	SERVICE_SET_HUMIDITY,
-    SERVICE_SET_MODE,
-    SUPPORT_MODES
+    SERVICE_SET_MODE
 )
 
-#import asyncio
 import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
-#from homeassistant.helpers import config_validation as cv, entity_platform, service
 from homeassistant.helpers import service
 from homeassistant.helpers.dispatcher import async_dispatcher_connect, async_dispatcher_send
 from homeassistant.core import callback
@@ -58,15 +54,14 @@ SERVICE_SET_MODE_SCHEMA = vol.Schema({
 
 _LOGGER = logging.getLogger(__name__)
 
-#SUPPORT_FLAGS = 0
-SUPPORT_FLAGS = SUPPORT_MODES
+SUPPORT_FLAGS = HumidifierEntityFeature.MODES
 
 #TODO: in midea_dehumi python lib the range 30-70 is hard coded (fix it)
 MIN_HUMITIDY = 35
 MAX_HUMITIDY = 70
 
 DEHUMI_MODES_DICT = { 'TARGET_HUMIDITY' : 1, 'CONTINUOS' : 2, 'SMART' : 3, 'DRYER' : 4}
-DEHUMI_MODES_LIST = [ 'Target_humidity', 'Continuos', 'Smart', 'Dryer']
+DEHUMI_MODES_LIST = [ 'Target', 'Continuous', 'Smart', 'Dryer']
 
 DEHUMI_FAN_SPEED_DICT = { 'SILENT' : 40, 'MEDIUM' : 60, 'HIGH' : 80 }
 DEHUMI_FAN_SPEED_LIST = [ 'Silent', 'Medium', 'High' ]
@@ -178,17 +173,7 @@ class MideaDehumidifierDevice(HumidifierEntity):
         self._upanddownSwing = None
         self._tankShow = False
 
-        self._device_class = DEVICE_CLASS_DEHUMIDIFIER
-
-        ##Get appliance's status to set initial values for the device
-        #_LOGGER.debug("midea-client: querying appliance status via Web API...")
-        #res = self._client.get_device_status(self._device['id'])
-        #if res == 1:
-        #    _LOGGER.debug("midea_dehumidifier: get_device_status suceeded: "+self._client.deviceStatus.toString())
-        #    #Set initial values for device's status
-        #    self.__refresh_device_status()
-        #else:
-        #    _LOGGER.error("midea_dehumidifier: get_device_status error")
+        self._device_class = HumidifierDeviceClass.DEHUMIDIFIER
 
     @property
     def unique_id(self):
@@ -256,7 +241,7 @@ class MideaDehumidifierDevice(HumidifierEntity):
     @property
     def min_humidity(self):
         """Return the min humidity set."""
-        return 40
+        return 35
 
     @property
     def max_humidity(self):
