@@ -5,6 +5,6 @@
   "issue_tracker": "https://github.com/fabrizioromanelli/homeassistant-midea-dehumidifier/issues",
   "dependencies": [],
   "codeowners": ["@fabrizioromanelli"],
-  "requirements": ["midea-inventor-lib==1.0.4"],
-  "version": "1.0.4"
+  "requirements": ["midea-inventor-lib==1.1.1"],
+  "version": "1.08"
 }
