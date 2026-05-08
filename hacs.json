@@ -4,6 +4,6 @@
    "codeowners": ["fabrizioromanelli"],
    "documentation": "https://github.com/fabrizioromanelli/homeassistant-midea-dehumidifier/blob/master/README.md",
    "issue_tracker": "https://github.com/fabrizioromanelli/homeassistant-midea-dehumidifier/issues",
-   "homeassistant": "11.3",
+   "homeassistant": "2024.1.0",
    "iot_class": "Cloud Polling"
 }
